@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18/09/2025 às 23:14
+-- Tempo de geração: 22/09/2025 às 01:10
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -29,47 +29,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `alunos` (
   `id` int(11) NOT NULL,
-  `aluno` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `nome` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `cpf` varchar(14) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `alunos`
 --
 
-INSERT INTO `alunos` (`id`, `aluno`) VALUES
-(1, 'Carlos Valdo'),
-(2, 'Reinaldo Silva');
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `aluno_curso`
---
-
-CREATE TABLE `aluno_curso` (
-  `id` int(11) NOT NULL,
-  `aluno` int(11) NOT NULL,
-  `curso` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `cursos`
---
-
-CREATE TABLE `cursos` (
-  `id` int(11) NOT NULL,
-  `curso` varchar(80) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Despejando dados para a tabela `cursos`
---
-
-INSERT INTO `cursos` (`id`, `curso`) VALUES
-(1, 'Sistemas de Informação'),
-(2, 'Engenharia da pesca');
+INSERT INTO `alunos` (`id`, `nome`, `email`, `cpf`) VALUES
+(1, 'Joao', 'Joao@gmail.com', '12300022299');
 
 --
 -- Índices para tabelas despejadas
@@ -79,20 +49,8 @@ INSERT INTO `cursos` (`id`, `curso`) VALUES
 -- Índices de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `aluno_curso`
---
-ALTER TABLE `aluno_curso`
-  ADD KEY `aluno` (`aluno`),
-  ADD KEY `curso` (`curso`);
-
---
--- Índices de tabela `cursos`
---
-ALTER TABLE `cursos`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email_unico` (`email`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
@@ -102,24 +60,7 @@ ALTER TABLE `cursos`
 -- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de tabela `cursos`
---
-ALTER TABLE `cursos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Restrições para tabelas despejadas
---
-
---
--- Restrições para tabelas `aluno_curso`
---
-ALTER TABLE `aluno_curso`
-  ADD CONSTRAINT `aluno_curso_ibfk_1` FOREIGN KEY (`aluno`) REFERENCES `alunos` (`id`),
-  ADD CONSTRAINT `aluno_curso_ibfk_2` FOREIGN KEY (`curso`) REFERENCES `cursos` (`id`);
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

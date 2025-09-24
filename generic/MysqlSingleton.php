@@ -23,7 +23,7 @@ class MysqlSingleton {
         $this->dsn = "127.0.0.1";
         $this->username = "root";
         $this->password = "";
-        $this->dbname = "DataBaseSingleton";
+        $this->dbname = "escola";
 
         $this->options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
