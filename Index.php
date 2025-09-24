@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ERROR | E_PARSE);
 include "generic/Autoload.php";
 
 use generic\Controller;

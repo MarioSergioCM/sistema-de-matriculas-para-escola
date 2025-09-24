@@ -25,16 +25,25 @@ class CursoController {
     }
 
     public function salvar() {
-        $curso = new Curso();
-        $curso->id = $_POST['id'] ?: null; 
-        $curso->nome = $_POST['nome'];
 
+        $curso = new Curso();
+        $curso->id = $_POST['id'] ?: null;
+        $curso->nome = $_POST['nome'];
+        if ($curso->id == null){
+            $curso = $this->cursoService->buscarPorNome($curso->nome);
+            if ($curso != null && $curso->id != $_POST['id']) {
+                unset($curso);
+                $erro = "este curso ja existe.";
+                include 'public/curso/form.php';
+                return;
+            }
+        }
         $this->cursoService->salvar($curso);
 
-        
-        header('Location: index.php?param=curso/listar');
-        exit;
-    }
+
+    header('Location: index.php?param=curso/listar');
+    exit;
+}
 
     public function excluir() {
         $id = $_GET['id'] ?? null;

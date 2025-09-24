@@ -17,6 +17,9 @@ class AlunoController {
 
     public function listar() {
         $alunos = $this->alunoService->listar();
+        foreach($alunos as $aluno){
+            
+        }
         include 'public/aluno/listar.php';
     }
 

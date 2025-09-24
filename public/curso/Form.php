@@ -1,3 +1,5 @@
+<?php if (isset($erro)) { echo "<script>alert('$erro');</script>"; }?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

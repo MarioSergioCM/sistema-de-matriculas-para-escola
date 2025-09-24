@@ -41,6 +41,22 @@ class CursoDAO implements ICursoDAO {
             return false;
         }
     }
+        public function buscarPorNome($nome) {
+        try {
+            $singleton = MysqlSingleton::getInstance();
+            $pdo = $singleton->connect();
+
+            $sql = "SELECT id, nome FROM cursos WHERE nome = :nome";
+            $sth = $pdo->prepare($sql);
+            $sth->bindValue(':nome', $nome, PDO::PARAM_INT);
+            $sth->execute();
+            
+            return $sth->fetchObject('model\Curso');
+        } 
+        catch (PDOException $e) {
+            return false;
+        }
+    }
 
     public function criar(Curso $curso) {
         try {

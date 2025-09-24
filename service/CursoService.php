@@ -18,6 +18,7 @@ class CursoService {
 
     public function buscar($id) {
         return $this->CursoDAO->buscarPorId($id);
+        
     }
 
     public function excluir($id) {
@@ -31,4 +32,8 @@ class CursoService {
             return $this->CursoDAO->criar($curso);
         }
     }
+    public function buscarPorNome($nome) {
+        return $this->CursoDAO->buscarPorNome($nome);
+}
+    
 }
