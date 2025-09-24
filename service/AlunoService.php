@@ -4,6 +4,7 @@ namespace service;
 
 use dao\mysql\AlunoDAO;
 use model\Aluno;
+use model\Curso;
 
 class AlunoService {
     private $alunoDAO;
@@ -30,5 +31,8 @@ class AlunoService {
         } else {
             return $this->alunoDAO->criar($aluno);
         }
+    }
+    public function matricular(Aluno $aluno, Curso $curso){
+        return $this->alunoDAO->matricular($aluno, $curso);
     }
 }

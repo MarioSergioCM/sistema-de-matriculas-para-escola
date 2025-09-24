@@ -2,13 +2,17 @@
 namespace controller;
 
 use model\Aluno;
+use model\Curso;
 use service\AlunoService;
+use service\CursoService;
 
 class AlunoController {
     private $alunoService;
+    private $cursoService;
 
     public function __construct() {
         $this->alunoService = new AlunoService();
+        $this->cursoService = new CursoService();
     }
 
     public function listar() {
@@ -43,6 +47,25 @@ class AlunoController {
         if ($id) {
             $this->alunoService->excluir($id);
         }
+        header('Location: index.php?param=aluno/listar');
+        exit;
+    }
+
+    public function formularioMatricula(){
+        $alunos = $this->alunoService->listar();
+        $cursos = $this->cursoService->listar();
+            include 'public/matricula/form.php';
+    }
+    
+    public function matriculaSalvar(){
+        $aluno = new Aluno();
+        $curso = new Curso();
+        $aluno->id = $_POST['aluno']; 
+        $curso->id = $_POST['curso'];
+
+        $this->alunoService->matricular($aluno, $curso);
+
+        
         header('Location: index.php?param=aluno/listar');
         exit;
     }

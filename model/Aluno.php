@@ -7,4 +7,5 @@ class Aluno {
     public ?string $nome = null;
     public ?string $email = null;
     public ?string $cpf = null;
+    public ?string $cursos = null;
 }
