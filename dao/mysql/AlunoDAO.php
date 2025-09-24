@@ -16,7 +16,7 @@ class AlunoDAO implements IAlunoDAO {
             $singleton = MysqlSingleton::getInstance();
 
             $pdo = $singleton->connect();
-
+            //query para buscar alunos, simultaneamente carregando os nomes dos cursos.
             $sql = "SELECT a.id, a.nome, a.email, a.cpf, GROUP_CONCAT(DISTINCT c.nome SEPARATOR ', ') as cursos FROM alunos a
                     LEFT JOIN alunos_cursos ac ON a.id = ac.aluno_id
                     LEFT JOIN cursos c ON ac.curso_id = c.id
